@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Commerce Dashboard</title>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        body {
+            display: flex;
+            background-color: #68a3d7;
+        }
+        .sidebar {
+            width: 250px;
+            background: #dfdef2;
+            color: rgb(15, 1, 1);
+            padding: 20px;
+            height: 100vh;
+            position: fixed;
+        }
+        .sidebar h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        .sidebar ul {
+            list-style: none;
+            padding: 0;
+        }
+        .sidebar ul li {
+            padding: 10px;
+            border-bottom: 1px solid #555;
+            cursor: pointer;
+        }
+        .sidebar ul li:hover {
+            background: #040311;
+        }
+        .main-content {
+            margin-left: 250px;
+            padding: 20px;
+            width: 100%;
+        }
+        .cards {
+            display: flex;
+            gap: 20px;
+        }
+        .card {
+            background: rgb(231, 228, 251);
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        .charts {
+            margin-top: 20px;
+            display: flex;
+            gap: 20px;
+        }
+        .chart {
+            background: white;
+            padding: 20px;
+            border-radius: 5px;
+            flex: 1;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        .table-container {
+            margin-top: 20px;
+            background: rgb(231, 234, 247);
+            padding: 20px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        table th, table td {
+            padding: 10px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        table th {
+            background: #f4f4f4;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="sidebar">
+        <h2>Dashboard</h2>
+        <ul>
+            <li>Overview</li>
+            <li>Sales</li>
+            <li>Orders</li>
+            <li>Inventory</li>
+            <li>Customers</li>
+            <li>Marketing</li>
+            <li>Settings</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <h1>E-Commerce Dashboard</h1>
+        
+        <div class="cards">
+            <div class="card">
+                <h3>Total Sales</h3>
+                <p>$12,450</p>
+            </div>
+            <div class="card">
+                <h3>Orders</h3>
+                <p>230</p>
+            </div>
+            <div class="card">
+                <h3>Customers</h3>
+                <p>1,245</p>
+            </div>
+        </div>
+
+        <div class="charts">
+            <div class="chart">
+                <h3>Sales Trend</h3>
+                <canvas id="salesChart"></canvas>
+            </div>
+            <div class="chart">
+                <h3>Top Products</h3>
+                <canvas id="productsChart"></canvas>
+            </div>
+        </div>
+
+        <div class="table-container">
+            <h3>Recent Orders</h3>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                        <th>Status</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#111</td>
+                        <td>Trupti Virkar</td>
+                        <td>Rs.120</td>
+                        <td>Shipped</td>
+                    </tr>
+                    <tr>
+                        <td>#222</td>
+                        <td>Kinjal Shah</td>
+                        <td>Rs.85</td>
+                        <td>Pending</td>
+                    </tr>
+                    <tr>
+                        <td>#333</td>
+                        <td>Siddhi S.</td>
+                        <td>Rs.210</td>
+                        <td>Delivered</td>
+                    </tr>
+                    <tr>
+                        <td>#444</td>
+                        <td>Shravani</td>
+                        <td>Rs.245</td>
+                        <td>Pending</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        // Sales Trend Chart
+        var ctx1 = document.getElementById('salesChart').getContext('2d');
+        var salesChart = new Chart(ctx1, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                datasets: [{
+                    label: 'Sales ($)',
+                    data: [1200, 1900, 3000, 5000, 7000, 9000],
+                    backgroundColor: 'rgba(54, 162, 235, 0.2)',
+                    borderColor: 'rgba(54, 162, 235, 1)',
+                    borderWidth: 2
+                }]
+            }
+        });
+
+        // Top Products Chart
+        var ctx2 = document.getElementById('productsChart').getContext('2d');
+        var productsChart = new Chart(ctx2, {
+            type: 'bar',
+            data: {
+                labels: ['Product A', 'Product B', 'Product C', 'Product D'],
+                datasets: [{
+                    label: 'Sales',
+                    data: [950, 380, 290, 600],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4CAF50']
+                }]
+            }
+        });
+    </script>
+
+</body>
+</html>
